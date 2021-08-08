@@ -1,0 +1,32 @@
+body{
+    font-family: Microsoft YaHei,Segoe UI,Tahoma,Arial,Verdana,sans-serif;
+}
+.sidebar{
+    min-height: calc(100vh);
+}
+.user-profile-button .dropdown-menu{
+    width: 100%;
+}
+.user-profile-button .dropdown-menu .dropdown-item{
+    font-size: 0.875rem;
+}
+.table-pagination{
+    overflow: hidden;
+}
+.alert-dismissible .close{
+    padding: 0.5rem 0.75rem;
+}
+.has-error input,.has-error select{
+    border: 1px solid #ff0854;
+}
+.has-error .help-block{
+    color: #ff0854 !important;
+    font-size: 0.875rem;
+    line-height: 1;
+    vertical-align: top;
+    margin-bottom: .5rem;
+}
+.img-list img,.img-list .item{
+    height: 100px;
+    width: 100% !important;
+}
