@@ -62,9 +62,11 @@ $this->title = '权限';
                                 <tr>
                                     <td><?php echo $permission->description; ?></td>
                                     <td><?php echo $permission->name; ?></td>
-                                    <td><?php echo $permission->createdAt;?></td>
+                                    <td><?php echo date("Y-m-d H:i:s",$permission->createdAt);?></td>
                                     <td>
-
+                                        <button type="button" onclick="deletePermission('<?php echo $permission->name; ?>')"
+                                                class="btn btn-danger btn-sm mr-2">删除
+                                        </button>
                                     </td>
                                 </tr>
                                 <?php
@@ -79,9 +81,9 @@ $this->title = '权限';
     </div>
 </div>
 <script>
-    function deleteCatalog(catalogId) {
-        doConfirm('删除目录？', function () {
-            window.location.href = 'index.php?r=backend/catalog/delete&catalogId=' + catalogId;
+    function deletePermission(permissionname) {
+        doConfirm('删除权限'+permissionname+'？', function () {
+            window.location.href = 'index.php?r=backend/permission/delete&name=' + permissionname;
         });
     }
 </script>

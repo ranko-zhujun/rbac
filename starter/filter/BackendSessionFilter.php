@@ -18,12 +18,14 @@ class BackendSessionFilter extends ActionFilter
             exit();
         } else {
 
-            $permission = $action->controller->module->id.'/'.$action->controller->id.'/'.$action->id;
+            return parent::beforeAction($action);
+
+/*            $permission = $action->controller->module->id.'/'.$action->controller->id.'/'.$action->id;
             if(\Yii::$app->user->can($permission)){
                 return parent::beforeAction($action);
             }else{
                 throw new UnauthorizedHttpException($permission);
-            }
+            }*/
         }
 
     }

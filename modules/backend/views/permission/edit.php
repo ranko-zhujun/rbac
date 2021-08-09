@@ -25,11 +25,10 @@ $this->title = '权限';
         <div class="card">
             <div class="card-body">
                 <?php $form = ActiveForm::begin(['id' => 'form-edit']); ?>
-                <?php $form->action = 'index.php?r=backend/catalog/save' ?>
+                <?php $form->action = 'index.php?r=backend/permission/save' ?>
                 <fieldset>
-                    <?= $form->field($model, 'id')->textInput()->label(false)->hiddenInput(['value' => $model->attributes['id']]) ?>
-                    <?= $form->field($model, 'catalogname', ['errorOptions' => ['class' => 'error mt-2 text-danger']]) ?>
-                    <?= $form->field($model, 'catalogtype', ['errorOptions' => ['class' => 'error mt-2 text-danger']])->dropDownList($catalogtype) ?>
+                    <?= $form->field($model, 'name', ['errorOptions' => ['class' => 'error mt-2 text-danger']]) ?>
+                    <?= $form->field($model, 'description', ['errorOptions' => ['class' => 'error mt-2 text-danger']]) ?>
                     <?= Html::submitButton('提 交', ['class' => 'btn btn-primary']) ?>
                 </fieldset>
                 <?php ActiveForm::end(); ?>
