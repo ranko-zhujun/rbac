@@ -26,7 +26,7 @@ use yii\helpers\Html;
             <li class="nav-item border-bottom ">
                 <div class="dropdown nav-link user-profile-button">
                     <button type="button" class="btn btn-primary btn-block dropdown-toggle" id="mypanel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="mdi mdi-account"></i>&nbsp;&nbsp;<h6 style="display: inline;"><?php echo Yii::$app->user->identity['loginname'] ?></h6>
+                        <i class="mdi mdi-account"></i>&nbsp;&nbsp;<h6 style="display: inline;"><?php echo Yii::$app->user->identity['username'] ?></h6>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="mypanel">
                         <h6 class="dropdown-header"><i class="fa fa-cogs"></i>&nbsp;个人设置</h6>
@@ -45,36 +45,20 @@ use yii\helpers\Html;
                     <span class="menu-title">控制面板</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="index.php?r=backend/post/index">
-                    <i class="mdi mdi-file-document menu-icon"></i>
-                    <span class="menu-title">内容</span>
+            <li class="nav-item border-bottom">
+                <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
+                    <i class="mdi mdi-account menu-icon"></i>
+                    <span class="menu-title">用户设置</span>
+                    <i class="menu-arrow"></i>
                 </a>
+                <div class="collapse" id="charts">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"> <a class="nav-link" href="index.php?r=backend/user/index">用户</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="index.php?r=backend/role/index">角色</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="index.php?r=backend/permission/index">权限</a></li>
+                    </ul>
+                </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="index.php?r=backend/catalog/index">
-                    <i class="mdi mdi-tree menu-icon"></i>
-                    <span class="menu-title">目录</span>
-                </a>
-            </li>
-            <li class="nav-item <?php echo Yii::$app->user->identity['super']==1?'':'border-bottom'; ?>">
-                <a class="nav-link" href="index.php?r=backend/attachment/index">
-                    <i class="fa fa-cloud menu-icon"></i>
-                    <span class="menu-title">附件</span>
-                </a>
-            </li>
-            <?php
-            if(Yii::$app->user->identity['super']==1){
-                ?>
-                <li class="nav-item border-bottom">
-                    <a class="nav-link" href="index.php?r=backend/user/index">
-                        <i class="mdi mdi-account menu-icon"></i>
-                        <span class="menu-title">用户</span>
-                    </a>
-                </li>
-                <?php
-            }
-            ?>
             <li class="nav-item ">
                 <a class="nav-link" href="http://www.ranko.cn" target="_blank">
                     <i class="mdi mdi-file-document-box menu-icon"></i>

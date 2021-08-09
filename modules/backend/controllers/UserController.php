@@ -5,7 +5,7 @@ namespace app\modules\backend\controllers;
 use app\starter\controllers\BackendController;
 use yii\web\Controller;
 
-class DefaultController extends BackendController
+class UserController extends BackendController
 {
     public function actionIndex()
     {

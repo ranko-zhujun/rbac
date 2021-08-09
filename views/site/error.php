@@ -1,27 +1,16 @@
 <?php
 
-/* @var $this yii\web\View */
-/* @var $name string */
-/* @var $message string */
-/* @var $exception Exception */
-
 use yii\helpers\Html;
 
 $this->title = $name;
 ?>
-<div class="site-error">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <div class="alert alert-danger">
-        <?= nl2br(Html::encode($message)) ?>
+<div class="container ">
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-danger" style="margin-top: 3rem;" role="alert">
+               错误内容：<?php echo $this->title ; ?><br>
+               错误信息：<?= nl2br(Html::encode($message)) ?>
+            </div>
+        </div>
     </div>
-
-    <p>
-        The above error occurred while the Web server was processing your request.
-    </p>
-    <p>
-        Please contact us if you think this is a server error. Thank you.
-    </p>
-
 </div>
