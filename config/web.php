@@ -20,7 +20,7 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'identityClass' => 'app\controllers\models\User',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
@@ -28,9 +28,6 @@ $config = [
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            // send all mails to a file by default. You have to set
-            // 'useFileTransport' to false and configure a transport
-            // for the mailer to send real emails.
             'useFileTransport' => true,
         ],
         'log' => [
@@ -43,6 +40,14 @@ $config = [
             ],
         ],
         'db' => $db,
+        'assetManager' => [
+            'bundles' => [
+                'yii\web\JqueryAsset' => [
+                    'js' => [],  // 去除 jquery.js
+                    'sourcePath' => null,  // 防止在 frontend/web/asset 下生产文件
+                ],
+            ]
+        ],
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
             'itemTable' => 'auth_item',
@@ -59,6 +64,14 @@ $config = [
         */
     ],
     'params' => $params,
+    'modules' => [
+        'backend' => [
+            'class' => 'app\modules\backend\Module',
+        ],
+        'install' => [
+            'class' => 'app\modules\install\Module',
+        ]
+    ],
 ];
 
 if (YII_ENV_DEV) {
