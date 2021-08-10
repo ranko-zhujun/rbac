@@ -42,7 +42,7 @@ class PermissionController extends BackendController
                     $permission = $authManager->createPermission($model->name);
                     $permission->description = $model->description;
                     $authManager->add($permission);
-                    $this->flashSuccess(['权限删除成功']);
+                    $this->flashSuccess(['权限添加成功']);
                     return $this->redirect('index.php?r=backend/permission/index');
                 }
             }

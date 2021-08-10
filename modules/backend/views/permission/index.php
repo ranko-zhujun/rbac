@@ -82,7 +82,7 @@ $this->title = '权限';
 </div>
 <script>
     function deletePermission(permissionname) {
-        doConfirm('删除权限'+permissionname+'？', function () {
+        doConfirm('删除权限：'+permissionname+'？', function () {
             window.location.href = 'index.php?r=backend/permission/delete&name=' + permissionname;
         });
     }

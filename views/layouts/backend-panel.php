@@ -13,7 +13,6 @@ use yii\helpers\Html;
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
-    <link rel="shortcut icon" href="backend/dist/img/favicon.ico">
     <?php $this->head() ?>
     <script src="backend/vendors/js/vendor.bundle.base.js"></script>
 </head>

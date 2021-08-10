@@ -7,14 +7,14 @@ use yii\widgets\LinkPager;
 
 $this->title = '权限';
 ?>
-<input type="hidden" name="location" value="index.php?r=backend/permission/index"/>
+<input type="hidden" name="location" value="index.php?r=backend/role/index"/>
 
 <div class="page-header">
-    <h3 class="page-title"> 权限 </h3>
+    <h3 class="page-title"> 角色 </h3>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">用户设置</li>
-            <li class="breadcrumb-item active" aria-current="page">权限</li>
+            <li class="breadcrumb-item active" aria-current="page"> 角色 </li>
         </ol>
     </nav>
 </div>
@@ -24,7 +24,7 @@ $this->title = '权限';
         <div class="card">
             <div class="card-body ">
                 <form class="form-inline float-right">
-                    <a href="index.php?r=backend/permission/edit" class="btn btn-primary">添加权限</a>
+                    <a href="index.php?r=backend/role/edit" class="btn btn-primary">添加角色</a>
                 </form>
             </div>
         </div>
@@ -56,19 +56,19 @@ $this->title = '权限';
                         </thead>
                         <tbody>
                         <?php
-                        foreach ($permissions as $permission) {
-                            if($permission->type == \yii\rbac\Item::TYPE_PERMISSION){
-                                ?>
-                                <tr>
-                                    <td><?php echo $permission->description; ?></td>
-                                    <td><?php echo $permission->name; ?></td>
-                                    <td><?php echo $permission->createdAt;?></td>
-                                    <td>
-
-                                    </td>
-                                </tr>
-                                <?php
-                            }
+                        foreach ($roles as $role) {
+                            ?>
+                            <tr>
+                                <td><?php echo $role->description; ?></td>
+                                <td><?php echo $role->name; ?></td>
+                                <td><?php echo $role->createdAt;?></td>
+                                <td>
+                                    <button type="button" onclick="deleteRole('<?php echo $role->name; ?>')"
+                                            class="btn btn-danger btn-sm mr-2">删除
+                                    </button>
+                                </td>
+                            </tr>
+                            <?php
                         }
                         ?>
                         </tbody>
@@ -79,9 +79,9 @@ $this->title = '权限';
     </div>
 </div>
 <script>
-    function deleteCatalog(catalogId) {
-        doConfirm('删除目录？', function () {
-            window.location.href = 'index.php?r=backend/catalog/delete&catalogId=' + catalogId;
+    function deleteRole(role) {
+        doConfirm('删除角色：'+role+'？', function () {
+            window.location.href = 'index.php?r=backend/role/delete&name=' + role;
         });
     }
 </script>
