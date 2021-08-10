@@ -3,7 +3,9 @@
 namespace app\modules\backend\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 use yii\data\Pagination;
+use yii\db\Expression;
 use yii\web\IdentityInterface;
 
 class User extends \yii\db\ActiveRecord
@@ -17,8 +19,8 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['username', 'auth_key', 'password_hash', 'email', 'createtime', 'updatetime'], 'required','message'=>'必填项.'],
-            [['role', 'status', 'createtime', 'updatetime'], 'integer'],
+            [['username', 'email','id'], 'required','message'=>'必填项'],
+            [['email'], 'email','message'=>'必须是邮箱'],
             [['username', 'password_hash', 'password_reset_token', 'email'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
         ];
@@ -33,7 +35,6 @@ class User extends \yii\db\ActiveRecord
             'password_hash' => '校验密码',
             'password_reset_token' => '密码重置TOKEN',
             'email' => '邮箱',
-            'role' => '角色',
             'status' => '状态',
             'createtime' => '创建时间',
             'updatetime' => '修改时间',
@@ -48,12 +49,24 @@ class User extends \yii\db\ActiveRecord
         $count = $query->count();
         $pagination = new Pagination(['totalCount' => $count]);
         $pagination->pageSize = $pagesize;
-        $list = $query ->orderBy('id asc')->offset($pagination->offset)
+        $list = $query ->orderBy('id desc')->offset($pagination->offset)
             ->limit($pagination->limit)
             ->all();
         $result['pagination'] = $pagination;
         $result['list'] = $list;
         return $result;
+    }
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'createtime',
+                'updatedAtAttribute' => 'updatetime',
+                'value' => new Expression('NOW()'),
+            ],
+        ];
     }
 
 

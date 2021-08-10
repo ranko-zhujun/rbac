@@ -4,6 +4,7 @@ use app\widgets\Message;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\widgets\LinkPager;
+$authManager = Yii::$app->authManager;
 
 $this->title = '用户';
 ?>
@@ -20,14 +21,38 @@ $this->title = '用户';
 </div>
 
 <div class="row">
+    <div class="col-12">
+        <?php
+        echo app\widgets\Message::widget();
+        ?>
+    </div>
+</div>
+
+<div class="row">
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
                 <?php $form = ActiveForm::begin(['id' => 'form-edit']); ?>
-                <?php $form->action = 'index.php?r=backend/role/save' ?>
+                <?php $form->action = 'index.php?r=backend/user/save' ?>
+                <?= $form->field($model, 'id', ['errorOptions' => ['class' => 'error mt-2 text-danger']])->hiddenInput(); ?>
                 <fieldset>
-                    <?= $form->field($model, 'username', ['errorOptions' => ['class' => 'error mt-2 text-danger']]) ?>
-                    <?= $form->field($model, 'email', ['errorOptions' => ['class' => 'error mt-2 text-danger']]) ?>
+                    <?php
+                    if($model->id ==0){
+                        ?>
+                        <?= $form->field($model, 'username', ['errorOptions' => ['class' => 'error mt-2 text-danger']]) ?>
+                        <?= $form->field($model, 'email', ['errorOptions' => ['class' => 'error mt-2 text-danger']]) ?>
+                        <?php
+                    }else{
+                        ?>
+                        <?= $form->field($model, 'username', ['errorOptions' => ['class' => 'error mt-2 text-danger']])->textInput([
+                            'readonly'=>'readonly'
+                        ]) ?>
+                        <?= $form->field($model, 'email', ['errorOptions' => ['class' => 'error mt-2 text-danger']])->textInput([
+                            'readonly'=>'readonly'
+                        ]) ?>
+                        <?php
+                    }
+                    ?>
                     <?= $form->field($model, 'password_hash', ['errorOptions' => ['class' => 'error mt-2 text-danger']]) ?>
                     <div class="row">
                         <div class="col-6">
@@ -36,10 +61,14 @@ $this->title = '用户';
                                 $index_col_1 = 0;
                                 foreach ($roles as $role) {
                                     if($index_col_1%2==0){
+                                        $checked = false;
+                                        if($model->id!=0){
+                                            $checked = $authManager->getAssignment($role->name,$model->id)==null?false:true;
+                                        }
                                         ?>
                                         <div class="form-check">
                                             <label class="form-check-label">
-                                                <input type="checkbox" name="roles[]" value="<?php echo $role->name; ?>" class="form-check-input"> <?php echo $role->name; ?>(<?php echo $role->description; ?>) <i class="input-helper"></i></label>
+                                                <input type="checkbox" <?php echo $checked?'checked':''; ?> name="roles[]" value="<?php echo $role->name; ?>" class="form-check-input"> <?php echo $role->name; ?>(<?php echo $role->description; ?>) <i class="input-helper"></i></label>
                                         </div>
                                         <?php
                                     }
@@ -54,10 +83,14 @@ $this->title = '用户';
                                 $index_col_2 = 0;
                                 foreach ($roles as $role) {
                                     if($index_col_2%2==1){
+                                        $checked = false;
+                                        if($model->id!=0){
+                                            $checked = $authManager->getAssignment($role->name,$model->id)==null?false:true;
+                                        }
                                         ?>
                                         <div class="form-check">
                                             <label class="form-check-label">
-                                                <input type="checkbox" name="roles[]" value="<?php echo $role->name; ?>" class="form-check-input"> <?php echo $role->name; ?>(<?php echo $role->description; ?>) <i class="input-helper"></i></label>
+                                                <input type="checkbox" <?php echo $checked?'checked':''; ?> name="roles[]" value="<?php echo $role->name; ?>" class="form-check-input"> <?php echo $role->name; ?>(<?php echo $role->description; ?>) <i class="input-helper"></i></label>
                                         </div>
                                         <?php
                                     }
