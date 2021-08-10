@@ -49,6 +49,7 @@ class UserController extends BackendController
                     $object->setAttributes($model->getAttributes(),false);
                     $object->status = 'active';
                     $object->password_hash = md5($model->password_hash);
+                    $object->super = 0;
                     $object->save();
                 } else {
                     $object = User::findOne($model->id);

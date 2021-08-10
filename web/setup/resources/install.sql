@@ -1,7 +1,7 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : 127.0.0.1
+ Source Server         : localhost
  Source Server Type    : MySQL
  Source Server Version : 50726
  Source Host           : localhost:3306
@@ -11,7 +11,7 @@
  Target Server Version : 50726
  File Encoding         : 65001
 
- Date: 08/08/2021 14:48:01
+ Date: 10/08/2021 15:02:58
 */
 
 SET NAMES utf8mb4;
@@ -97,15 +97,21 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `auth_key` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `password_hash` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `auth_key` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `password_hash` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `password_reset_token` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `role` smallint(6) NOT NULL DEFAULT 10,
-  `status` smallint(6) NOT NULL DEFAULT 10,
-  `created_at` int(11) NOT NULL,
-  `updated_at` int(11) NOT NULL,
+  `status` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '10',
+  `createtime` timestamp(0) NULL DEFAULT NULL,
+  `updatetime` timestamp(0) NULL DEFAULT NULL,
+  `super` tinyint(255) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of user
+-- ----------------------------
+INSERT INTO `user` VALUES (1, 'ranko', NULL, '21232f297a57a5a743894a0e4a801fc3', NULL, 'aubrey.zhu@outlook.com', 'active', '2021-08-10 15:02:22', NULL, 1);
+INSERT INTO `user` VALUES (2, 'test', NULL, '098f6bcd4621d373cade4e832627b4f6', NULL, 'test@ranko.cn', 'active', '2021-08-10 15:02:03', '2021-08-10 15:02:03', 0);
 
 SET FOREIGN_KEY_CHECKS = 1;
