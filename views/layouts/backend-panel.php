@@ -29,7 +29,7 @@ use yii\helpers\Html;
                     </button>
                     <div class="dropdown-menu" aria-labelledby="mypanel">
                         <h6 class="dropdown-header"><i class="fa fa-cogs"></i>&nbsp;个人设置</h6>
-                        <a class="dropdown-item" href="index.php?r=backend/user/edit&userId=<?php echo Yii::$app->user->identity['id'] ?>"><i class="fa fa-lock"></i>&nbsp;修改密码</a>
+                        <a class="dropdown-item" href="index.php?r=backend/self/index"><i class="fa fa-lock"></i>&nbsp;修改密码</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="index.php?r=site/logout"><i class="fa fa-power-off"></i>&nbsp;退出</a>
                     </div>
