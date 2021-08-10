@@ -65,7 +65,7 @@ $this->title = '用户';
                                 <td>
                                     <a href="index.php?r=backend/user/edit&id=<?php echo $user['id']; ?>"
                                        class="btn btn-primary btn-sm mr-2">编辑</a>
-                                    <button type="button" onclick="deleteUser('<?php echo $user->id; ?>')"
+                                    <button type="button" onclick="deleteUser('<?php echo $user->id; ?>','<?php echo $user->username; ?>')"
                                             class="btn btn-danger btn-sm mr-2">禁用
                                     </button>
                                 </td>
@@ -104,9 +104,9 @@ $this->title = '用户';
     </div>
 </div>
 <script>
-    function deleteUser(role) {
-        doConfirm('禁用用户：'+role+'？', function () {
-            window.location.href = 'index.php?r=backend/user/delete&name=' + role;
+    function deleteUser(userid,username) {
+        doConfirm('禁用用户：'+username+'？', function () {
+            window.location.href = 'index.php?r=backend/user/delete&userid=' + userid;
         });
     }
 </script>

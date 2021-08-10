@@ -85,4 +85,14 @@ class UserController extends BackendController
 
     }
 
+    public function actionDelete($userid){
+
+        $object = User::findOne($userid);
+        $object->status = 'disabled';
+        $object->update();
+
+        $this->flashSuccess(['用户禁用成功']);
+        return $this->redirect('index.php?r=backend/user/index');
+    }
+
 }
