@@ -41,7 +41,6 @@ class DefaultController extends InstallController
         foreach ($sqlList as $sql) {
             $db->createCommand($sql)->execute();
         }
-        $db->createCommand('update cms_config set cfgvalue = md5(\'admin\') where id = 1')->execute();
         $db->close();
 
 
