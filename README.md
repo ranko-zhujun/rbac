@@ -23,5 +23,17 @@ GPL
 4. 默认密码：ranko/admin
 5. 后台地址：index.php?r=site/login
 
+## 使用事项
+1.starter/filter/BackendSessionFilter中的注释掉的代码取消注释，以开启权限过滤
+
+```
+$permission = $action->controller->module->id.'/'.$action->controller->id.'/'.$action->id;
+if(\Yii::$app->user->can($permission)){
+    return parent::beforeAction($action);
+}else{
+    throw new UnauthorizedHttpException($permission);
+}
+```
+
 # 代码地址
-码云：https://gitee.com/wx_ranko/home
+GITHUB：https://github.com/ranko-zhujun/rbac
